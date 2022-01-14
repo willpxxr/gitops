@@ -12,9 +12,9 @@ spec:
           - path: bootstrap/*
   template:
     metadata:
-      name: bootstrap
+      name: 'bootstrap-{{path.basename}}'
     spec:
-      project: bootstrap
+      project: 'bootstrap-{{path.basename}}'
       source:
         repoURL: https://github.com/willpxxr/gitops
         targetRevision: HEAD
