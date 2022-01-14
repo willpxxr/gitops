@@ -14,7 +14,7 @@ spec:
     metadata:
       name: 'bootstrap-{{path.basename}}'
     spec:
-      project: 'bootstrap-{{path.basename}}'
+      project: bootstrap
       source:
         repoURL: https://github.com/willpxxr/gitops
         targetRevision: HEAD
