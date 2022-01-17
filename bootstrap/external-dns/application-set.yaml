@@ -1,0 +1,32 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: bootstrap-external-dns
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: '{{name}}-external-dns'
+    spec:
+      project: bootstrap
+      source:
+        repoURL: https://kubernetes-sigs.github.io/external-dns/
+        chart: external-dns
+        targetRevision: 1.7.1
+        helm:
+          version: v3
+          releaseName: external-dns
+          parameters:
+            - name: provider
+              value: azure
+      destination:
+        server: '{{server}}'
+        namespace: external-dns
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
