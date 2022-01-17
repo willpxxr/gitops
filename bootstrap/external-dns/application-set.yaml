@@ -18,22 +18,8 @@ spec:
         helm:
           version: v3
           releaseName: external-dns
-          parameters:
-            - name: provider
-              value: azure
-            - name: extraVolumeMounts
-              value: |
-                - name: azure-config-file
-                  mountPath: /etc/kubernetes
-                  readOnly: true
-            - name: extraVolumes
-              value: |
-                - name: azure-config-file
-                  secret:
-                    secretName: azure-config-file
-                    items:
-                    - key: externaldns-config.json
-                      path: azure.json
+          valueFiles:
+            - values.yaml
       destination:
         server: '{{server}}'
         namespace: external-dns

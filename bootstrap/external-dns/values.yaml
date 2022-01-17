@@ -1,0 +1,14 @@
+provider: azure
+
+extraVolumeMounts:
+  - name: azure-config-file
+    mountPath: /etc/kubernetes
+    readOnly: true
+
+extraVolumes:
+  - name: azure-config-file
+    secret:
+      secretName: azure-config-file
+      items:
+      - key: externaldns-config.json
+        path: azure.json
