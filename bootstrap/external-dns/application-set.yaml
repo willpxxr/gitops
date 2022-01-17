@@ -21,6 +21,19 @@ spec:
           parameters:
             - name: provider
               value: azure
+            - name: extraVolumeMounts
+              value: |
+                - name: azure-config-file
+                  mountPath: /etc/kubernetes
+                  readOnly: true
+            - name: extraVolumes
+              value: |
+                - name: azure-config-file
+                  secret:
+                    secretName: azure-config-file
+                    items:
+                    - key: externaldns-config.json
+                      path: azure.json
       destination:
         server: '{{server}}'
         namespace: external-dns
