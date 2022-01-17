@@ -31,11 +31,11 @@ spec:
         syncOptions:
           - CreateNamespace=true
       ignoreDifferences:
-        - kind: ValidatingWebhookConfiguration
-          group: admissionregistration.k8s.io/v1
-          name: cert-manager-webhook
-          jqPathExpressions:
-            - .webhooks[].namespaceSelector.matchExpressions[] | select(.key == "control-plane")
+      - group: admissionregistration.k8s.io
+        kind: ValidatingWebhookConfiguration
+        name: cert-manager-webhook
+        jqPathExpressions:
+          - .webhooks[].namespaceSelector.matchExpressions[] | select(.key == "control-plane")
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
