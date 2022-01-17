@@ -52,6 +52,7 @@ spec:
       source:
         repoURL: https://github.com/willpxxr/gitops/bootstrap/cert-manger/acme
         targetRevision: HEAD
+        path: bootstrap/cert-manager/acme
       destination:
         server: '{{server}}'
         namespace: cert-manager
