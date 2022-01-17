@@ -18,6 +18,9 @@ spec:
         helm:
           version: v3
           releaseName: "cert-manager"
+          parameters:
+            - name: installCRDs
+              value: "true"
       destination:
         server: '{{server}}'
         namespace: cert-manager
