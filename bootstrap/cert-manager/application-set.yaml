@@ -50,7 +50,7 @@ spec:
     spec:
       project: bootstrap
       source:
-        repoURL: https://github.com/willpxxr/gitops/bootstrap/cert-manger/acme
+        repoURL: https://github.com/willpxxr/gitops
         targetRevision: HEAD
         path: bootstrap/cert-manager/acme
       destination:
