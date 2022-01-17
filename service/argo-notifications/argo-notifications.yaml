@@ -1,0 +1,29 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: bootstrap-ingress-nginx
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: '{{name}}-argo-notifications'
+    spec:
+      project: service
+      source:
+        repoURL: https://argoproj.github.io/argo-helm
+        chart: argocd-notifications
+        targetRevision: 1.7.0
+        helm:
+          version: v3
+          releaseName: "argo-notifications"
+      destination:
+        server: '{{server}}'
+        namespace: argocd
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
