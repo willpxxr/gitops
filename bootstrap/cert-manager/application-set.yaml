@@ -30,6 +30,11 @@ spec:
           prune: true
         syncOptions:
           - CreateNamespace=true
+      ignoreDifferences:
+        - kind: ValidatingWebhookConfiguration
+          name: cert-manager-webhook
+          jqPathExpressions:
+            - .webhooks[] | select(.name == "webhook.cert-manager.io").namespaceSelector.matchExpressions[] | select(.key == "control-plane")
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
